@@ -10,12 +10,18 @@
   padding: 20px;
 }
 
+.row__card {
+  display: flex;
+  /* flex-direction: column; */
+}
+
 .row__posters::-webkit-scrollbar {
   display: none;
 }
 
 .row__poster {
   max-height: 100px;
+  min-width: 180px;
   object-fit: contain;
   margin-right: 10px;
   transition: transform 450ms;
@@ -32,4 +38,18 @@
 .row__posterLarge:hover {
   transform: scale(1.09);
   opacity: 1;
+}
+
+.row__titles {
+  display: flex;
+  align-items: center;
+}
+
+.row__title {
+  font-size: 16px;
+  color: #fff;
+  min-width: 180px;
+  margin-right: 10px;
+  text-align: center;
+  font-weight: bold;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Banner from './Banner';
 import './HomeScreen.css';
 import Nav from './Nav';
-import requests from './Requests';
+import { requests, titleRequests } from './Requests';
 import Row from './Row';
 
 const HomeScreen = () => {
@@ -13,6 +13,7 @@ const HomeScreen = () => {
       <Row
         title='NETFLIX ORIGINALS'
         fetchUrl={requests.fetchNetflixOriginals}
+        // fetchTitle={titleRequests}
         isLargeRow
       />
       <Row title='Top Rated' fetchUrl={requests.fetchTopRated} />
