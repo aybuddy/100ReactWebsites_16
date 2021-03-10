@@ -1,9 +1,10 @@
 import React from 'react';
-import Banner from './Banner';
+import Banner from '../Banner';
+import Nav from '../Nav';
+import Row from '../Row';
+import { requests, titleRequests } from '../Requests';
+
 import './HomeScreen.css';
-import Nav from './Nav';
-import { requests, titleRequests } from './Requests';
-import Row from './Row';
 
 const HomeScreen = () => {
   return (
