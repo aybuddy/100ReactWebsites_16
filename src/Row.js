@@ -41,7 +41,7 @@ const Row = ({ title, fetchUrl, isLargeRow = false }) => {
               )
             );
           })}
-          {movies.map((movie) => console.log(movie.original_name))}
+          {/* {movies.map((movie) => console.log(movie.original_name))} */}
         </div>
       </div>
     </div>
