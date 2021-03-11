@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../features/userSlice';
 import db from '../firebase';
 import './PlansScreen.css';
+import { loadStripe } from '@stripe/stripe-js';
 
 const PlansScreens = () => {
   const [products, setProducts] = useState([]);
+  const user = useSelector(selectUser);
 
   useEffect(() => {
     db.collection('products')
@@ -25,9 +29,32 @@ const PlansScreens = () => {
       });
   }, []);
 
-  const loadCheckout = async (priceId) => {};
+  const loadCheckout = async (priceId) => {
+    const docRef = await db
+      .collection('customers')
+      .doc(user.uid)
+      .collection('checkout_sessions')
+      .add({
+        price: priceId,
+        success_url: window.location.origin,
+        cancel_url: window.location.origin,
+      });
 
-  console.log(products);
+    docRef.onSnapshot(async (snap) => {
+      const { error, sessionId } = snap.data();
+
+      if (error) {
+        alert(`an error occured: ${error.message}`);
+      }
+
+      if (sessionId) {
+        const stripe = await loadStripe(
+          'pk_test_hxvZMDp49quDr3Pywm0wI9qf00jfgyILmm'
+        );
+        stripe.redirectToCheckout({ sessionId });
+      }
+    });
+  };
 
   return (
     <div className='plansScreen'>
